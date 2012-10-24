@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using MesanMobilityFramework.Common.Communication;
+using MesanApplicationFramework.Common.Communication;
 
 namespace FlickrBrowser.DataModel
 {

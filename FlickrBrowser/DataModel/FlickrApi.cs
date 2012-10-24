@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlickrBrowser.Infrastructure;
-using MesanMobilityFramework.Common;
-using MesanMobilityFramework.Common.Communication;
+using MesanApplicationFramework.Common.Communication;
 
 namespace FlickrBrowser.DataModel
 {
