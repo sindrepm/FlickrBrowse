@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="ed84186a-0359-4bd3-b31a-5913d7c5266v" Publisher="CN=Sindre" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>FlickrBrowser3</DisplayName>
+    <PublisherDisplayName>Sindre</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="FlickrBrowser.App">
+      <VisualElements DisplayName="FlickrBrowser" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="FlickrBrowser" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="noLogos" WideLogo="Assets\LogoWide.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#3D3535" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="picturesLibrary" />
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
