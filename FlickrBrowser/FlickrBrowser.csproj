@@ -206,8 +206,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MesanMobilityFramework.Common">
-      <HintPath>..\..\..\MesanMobilityFramework\MesanMobilityFramework.Common\bin\Debug\MesanMobilityFramework.Common.dll</HintPath>
+    <Reference Include="MesanApplicationFramework.Common">
+      <HintPath>..\..\..\MesanApplicationFramework\MesanApplicationFramework.Common\bin\Debug\MesanApplicationFramework.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
