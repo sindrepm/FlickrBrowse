@@ -19,6 +19,9 @@
         <DefaultTile ShowName="noLogos" WideLogo="Assets\LogoWide.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#3D3535" />
       </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

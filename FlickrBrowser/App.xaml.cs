@@ -9,6 +9,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.ApplicationModel.Search;
 
 // The Split App template is documented at http://go.microsoft.com/fwlink/?LinkId=234228
 
@@ -100,6 +101,77 @@ namespace FlickrBrowser
             await SuspensionManager.SaveAsync();
             deferral.Complete();
             FlickrApi.Instance.ApiErrorOccured -= ErrorHandler;
+        }
+
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            base.OnWindowCreated(args);
+
+            BindQuerySubmitted();
+        }
+
+        private static void BindQuerySubmitted()
+        {
+            var searchPane = SearchPane.GetForCurrentView();
+
+            if (searchPane != null)
+            {
+                searchPane.QuerySubmitted += (o, e) =>
+                {
+                    var frame = Window.Current.Content as Frame;
+                    if (frame != null)
+                        frame.Navigate(typeof(SearchResultsPage), e.QueryText);
+                };
+            }
+        }
+
+        /// <summary>
+        /// Invoked when the application is activated to display search results.
+        /// </summary>
+        /// <param name="args">Details about the activation request.</param>
+        protected async override void OnSearchActivated(Windows.ApplicationModel.Activation.SearchActivatedEventArgs args)
+        {
+            // TODO: Register the Windows.ApplicationModel.Search.SearchPane.GetForCurrentView().QuerySubmitted
+            // event in OnWindowCreated to speed up searches once the application is already running
+
+            // If the Window isn't already using Frame navigation, insert our own Frame
+            var previousContent = Window.Current.Content;
+            var frame = previousContent as Frame;
+
+            // If the app does not contain a top-level frame, it is possible that this 
+            // is the initial launch of the app. Typically this method and OnLaunched 
+            // in App.xaml.cs can call a common method.
+            if (frame == null)
+            {
+                // Create a Frame to act as the navigation context and associate it with
+                // a SuspensionManager key
+                frame = new Frame();
+                FlickrBrowser.Common.SuspensionManager.RegisterFrame(frame, "AppFrame");
+
+                if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
+                    // Restore the saved session state only when appropriate
+                    try
+                    {
+                        await FlickrBrowser.Common.SuspensionManager.RestoreAsync();
+                    }
+                    catch (FlickrBrowser.Common.SuspensionManagerException)
+                    {
+                        //Something went wrong restoring state.
+                        //Assume there is no state and continue
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(args.QueryText))
+                frame.Navigate(typeof(HomePage));
+            else
+                frame.Navigate(typeof(SearchResultsPage), args.QueryText);
+
+            Window.Current.Content = frame;
+
+            // Ensure the current window is active
+            Window.Current.Activate();
         }
     }
 }

@@ -57,6 +57,10 @@
 
                 <VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerUserControl" Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="50,0,0,0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentContainer" Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="50,40,50,40"/>
                         </ObjectAnimationUsingKeyFrames>
@@ -73,7 +77,11 @@
                 -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>
-                       
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="headerUserControl" Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="40,0,0,0"/>
+                        </ObjectAnimationUsingKeyFrames>
+
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentContainer" Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="40,50,0,40"/>
                         </ObjectAnimationUsingKeyFrames>

@@ -104,6 +104,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\SearchFilter.cs" />
     <Compile Include="DataModel\GetRecentFlickrPhotosCommand.cs" />
     <Compile Include="DataModel\LibraryPhoto.cs" />
     <Compile Include="DataModel\Photo.cs" />
@@ -113,6 +114,9 @@
     <Compile Include="Infrastructure\AppBarCommand.cs" />
     <Compile Include="Infrastructure\LocalAppSettings.cs" />
     <Compile Include="Infrastructure\NavigationManager.cs" />
+    <Compile Include="Pages\SearchResultsPage.xaml.cs">
+      <DependentUpon>SearchResultsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\StorageItemThumbnailConverter.cs" />
     <Compile Include="Pages\BasePage.xaml.cs">
       <DependentUpon>BasePage.xaml</DependentUpon>
@@ -165,6 +169,10 @@
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\MediumGray.png" />
     <Content Include="Assets\DarkGray.png" />
+    <Page Include="Pages\SearchResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -206,9 +214,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MesanApplicationFramework.Common">
-      <HintPath>..\..\..\MesanApplicationFramework\MesanApplicationFramework.Common\bin\Debug\MesanApplicationFramework.Common.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\MesanApplicationFramework-MS\MesanApplicationFramework.Common\MesanApplicationFramework.Common.csproj">
+      <Project>{c52b3015-0b85-4ef9-b62b-3f73b0f2b525}</Project>
+      <Name>MesanApplicationFramework.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

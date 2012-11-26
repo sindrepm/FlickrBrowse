@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel.Search;
 
 namespace FlickrBrowser.Pages
 {
@@ -45,6 +46,15 @@ namespace FlickrBrowser.Pages
             };
 
             SizeChanged += HomePage_SizeChanged;
+
+            ShowSearchPaneOnKeyboardInput();
+        }
+
+        private static void ShowSearchPaneOnKeyboardInput()
+        {
+            var searchPane = SearchPane.GetForCurrentView();
+            if (searchPane != null)
+                searchPane.ShowOnKeyboardInput = true;
         }
 
         void HomePage_SizeChanged(object sender, SizeChangedEventArgs e)
