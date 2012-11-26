@@ -117,6 +117,9 @@
     <Compile Include="Pages\BasePage.xaml.cs">
       <DependentUpon>BasePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PhotoRecievedPage.xaml.cs">
+      <DependentUpon>PhotoRecievedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PhotoRecievedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,7 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MesanApplicationFramework.Common">
-      <HintPath>..\..\..\MesanApplicationFramework\MesanApplicationFramework.Common\bin\Debug\MesanApplicationFramework.Common.dll</HintPath>
+      <HintPath>..\..\MesanApplicationFramework-MS\MesanApplicationFramework.Common\bin\Debug\MesanApplicationFramework.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

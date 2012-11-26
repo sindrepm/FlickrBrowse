@@ -1,11 +1,15 @@
-﻿using FlickrBrowser.Common;
+﻿using System.Collections.Generic;
+using FlickrBrowser.Common;
 
 using System;
 using FlickrBrowser.DataModel;
 using FlickrBrowser.Infrastructure;
 using FlickrBrowser.Pages;
+using FlickrBrowser.UserControls;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -100,6 +104,14 @@ namespace FlickrBrowser
             await SuspensionManager.SaveAsync();
             deferral.Complete();
             FlickrApi.Instance.ApiErrorOccured -= ErrorHandler;
+        }
+
+        protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
+        {
+            var rootFrame = new Frame();
+            rootFrame.Navigate(typeof(PhotoRecievedPage), args.ShareOperation);
+            Window.Current.Content = rootFrame;
+            Window.Current.Activate();
         }
     }
 }
