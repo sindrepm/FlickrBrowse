@@ -20,7 +20,27 @@
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#3D3535" />
       </VisualElements>
       <Extensions>
+<<<<<<< HEAD
         <Extension Category="windows.search" />
+=======
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name=".flickrbrowse">
+            <Logo>Assets\flickr-logo.png</Logo>
+            <SupportedFileTypes>
+              <FileType>.jpg</FileType>
+              <FileType>.png</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+        <Extension Category="windows.shareTarget">
+          <ShareTarget>
+            <SupportedFileTypes>
+              <SupportsAnyFileType />
+            </SupportedFileTypes>
+            <DataFormat>Bitmap</DataFormat>
+          </ShareTarget>
+        </Extension>
+>>>>>>> 96ed2328182c8825a55337b1e928a44375352624
       </Extensions>
     </Application>
   </Applications>

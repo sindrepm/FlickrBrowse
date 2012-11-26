@@ -1,0 +1,39 @@
+﻿<pages:BasePage
+    x:Class="FlickrBrowser.Pages.PhotoRecievedPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:FlickrBrowser.UserControls" xmlns:pages="using:FlickrBrowser.Pages" mc:Ignorable="d">
+
+    <Border BorderBrush="#464646" BorderThickness="1 0 0 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--<StackPanel Background="#464646" Orientation="Horizontal">
+                <Button x:Name="backButton" Style="{StaticResource BackButtonStyle}" Margin="25,0,0,0" FontWeight="Light" FontSize="36" Width="40" Click="backButton_Click"/>
+                <TextBlock Text="FlickrBrowse Recieved Image" FontSize="26" FontFamily="Segoe UI" Margin="0 24 0 0" FontWeight="Light" />
+            </StackPanel>-->
+
+            <StackPanel Grid.Row="1" Background="White">
+                <Grid Margin="25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Image url:" Foreground="#FF858585" FontFamily="Segoe UI" FontWeight="Normal" FontSize="18" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" x:Name="lblImagePath"  VerticalAlignment="Center" Text="" FontSize="14" FontFamily="Segoe UI" Foreground="#FF292929" />
+                    <Image Grid.ColumnSpan="2" Grid.Row="2" Source="/Assets/Logo.png" x:Name="photoRecievedContainer"></Image>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+</pages:BasePage>

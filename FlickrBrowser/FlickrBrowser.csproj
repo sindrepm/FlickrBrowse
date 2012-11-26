@@ -121,6 +121,9 @@
     <Compile Include="Pages\BasePage.xaml.cs">
       <DependentUpon>BasePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PhotoRecievedPage.xaml.cs">
+      <DependentUpon>PhotoRecievedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PhotoRecievedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,10 +221,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ProjectReference Include="..\..\MesanApplicationFramework-MS\MesanApplicationFramework.Common\MesanApplicationFramework.Common.csproj">
       <Project>{c52b3015-0b85-4ef9-b62b-3f73b0f2b525}</Project>
       <Name>MesanApplicationFramework.Common</Name>
     </ProjectReference>
+=======
+    <Reference Include="MesanApplicationFramework.Common">
+      <HintPath>..\..\MesanApplicationFramework-MS\MesanApplicationFramework.Common\bin\Debug\MesanApplicationFramework.Common.dll</HintPath>
+    </Reference>
+>>>>>>> 96ed2328182c8825a55337b1e928a44375352624
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
