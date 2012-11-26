@@ -107,7 +107,6 @@ namespace FlickrBrowser
             FlickrApi.Instance.ApiErrorOccured -= ErrorHandler;
         }
 
-<<<<<<< HEAD
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             base.OnWindowCreated(args);
@@ -174,15 +173,13 @@ namespace FlickrBrowser
                 frame.Navigate(typeof(SearchResultsPage), args.QueryText);
 
             Window.Current.Content = frame;
-
-            // Ensure the current window is active
-=======
+        }
+            
         protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
         {
             var rootFrame = new Frame();
             rootFrame.Navigate(typeof(PhotoRecievedPage), args.ShareOperation);
             Window.Current.Content = rootFrame;
->>>>>>> 96ed2328182c8825a55337b1e928a44375352624
             Window.Current.Activate();
         }
     }
