@@ -1,22 +1,14 @@
 ﻿using FlickrBrowser.Common;
 using FlickrBrowser.DataModel;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Activation;
+using FlickrBrowser.Infrastructure;
 using Windows.ApplicationModel.Search;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Search Contract item template is documented at http://go.microsoft.com/fwlink/?LinkId=234240
 
@@ -27,13 +19,33 @@ namespace FlickrBrowser.Pages
     /// </summary>
     public sealed partial class SearchResultsPage : BasePage
     {
+        private readonly PicturesLibraryManager _picturesLibraryManager;
 
         public SearchResultsPage()
         {
             this.InitializeComponent();
 
+            BindEventHandlers();
+
+            DefaultViewModel["IsDownloadEnabled"] = true;
             ShowSearchPaneOnKeyboardInput();
+
+            _picturesLibraryManager = new PicturesLibraryManager();
         }
+
+        private void BindEventHandlers()
+        {
+            AppBarButtonClicked += (o, e) =>
+            {
+                switch (e.AppBarCommand)
+                {
+                    case AppBarCommand.Download:
+                        SaveSelectedPhoto();
+                        break;
+                }
+            };
+        }
+
 
         private static void ShowSearchPaneOnKeyboardInput()
         {
@@ -142,6 +154,23 @@ namespace FlickrBrowser.Pages
             NavigationManager.NavigateToPage(e.TargetPage);
         }
 
+        private async void SaveSelectedPhoto()
+        {
+            var selectedPhoto = resultsGridView.SelectedItem as FlickrPhoto;
+            if (selectedPhoto == null)
+            {
+                ShowMessage("No image selected!");
+                return;
+            }
 
+            await _picturesLibraryManager.SaveFlickrPhotoToPictureLibraryAsync(selectedPhoto);
+            ShowMessage("Image was saved to Pictures Library");
+        }
+
+        private async void ShowMessage(string message)
+        {
+            var msg = new MessageDialog(message);
+            await msg.ShowAsync();
+        }
     }
 }

@@ -225,8 +225,11 @@
       <Project>{c52b3015-0b85-4ef9-b62b-3f73b0f2b525}</Project>
       <Name>MesanApplicationFramework.Common</Name>
     </ProjectReference>
-    <Reference Include="MesanApplicationFramework.Common">
-      <HintPath>..\..\MesanApplicationFramework-MS\MesanApplicationFramework.Common\bin\Debug\MesanApplicationFramework.Common.dll</HintPath>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MesanApplicationFramework.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\MesanApplicationFramework.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
