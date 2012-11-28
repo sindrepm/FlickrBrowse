@@ -1,0 +1,44 @@
+﻿<UserControl
+    x:Class="FlickrBrowser.UserControls.SettingsUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FlickrBrowser.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="500"
+    d:DesignWidth="346">
+
+    <Border BorderBrush="#464646" BorderThickness="1 0 0 0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Background="#464646" Orientation="Horizontal">
+            <Button x:Name="backButton" Style="{StaticResource BackButtonStyle}" Margin="25,0,0,0" FontWeight="Light" FontSize="36" Width="40" Click="backButton_Click"/>
+            <TextBlock Text="FlickrBrowse Settings" FontSize="26" FontFamily="Segoe UI" Margin="0 24 0 0" FontWeight="Light" />
+        </StackPanel>
+
+            <StackPanel Grid.Row="1" Background="White">
+                <Grid Margin="25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Flickr API Settings" Foreground="#FF858585" FontFamily="Segoe UI" FontWeight="Normal" FontSize="18" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="Flickr API Key:" FontSize="14" FontFamily="Segoe UI" Foreground="#FF292929" />
+                    <TextBox Grid.Row="1" x:Name="txtApiKey" VerticalAlignment="Center" Grid.Column="1" BorderBrush="#FF858585" />
+                    <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="Flickr API URL:" FontSize="14" FontFamily="Segoe UI" Foreground="#FF292929" />
+                    <TextBox Grid.Row="2" x:Name="txtApiUrl" VerticalAlignment="Center" Grid.Column="1" BorderBrush="#FF858585" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
