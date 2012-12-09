@@ -114,6 +114,7 @@
     <Compile Include="Infrastructure\AppBarCommand.cs" />
     <Compile Include="Infrastructure\LocalAppSettings.cs" />
     <Compile Include="Infrastructure\NavigationManager.cs" />
+    <Compile Include="Infrastructure\RoamingAppSettings.cs" />
     <Compile Include="Pages\SearchResultsPage.xaml.cs">
       <DependentUpon>SearchResultsPage.xaml</DependentUpon>
     </Compile>

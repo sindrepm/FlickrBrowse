@@ -14,6 +14,9 @@ namespace FlickrBrowser.Infrastructure
         private const string FlickrApiUrlKey = "FlickrApiUrlKey";
         private const string DefaultFlickrApiUrl = "http://api.flickr.com/services/rest/";
 
+        private const string UseRoamingKey = "UseRoamingKey";
+        private const string RememberCategoryKey = "RemeberCategoryKey";
+
         public string FlickrApiKey
         {
             get { return GetValue<string>(FlickrApiKeyKey); }
@@ -24,6 +27,30 @@ namespace FlickrBrowser.Infrastructure
         {
             get { return GetValue<string>(FlickrApiUrlKey); }
             set { _localSettings.Values[FlickrApiUrlKey] = value; }
+        }
+
+        public bool UseRoaming
+        {
+            get
+            {
+                return GetValue<bool>(UseRoamingKey);
+            }
+            set
+            {
+                _localSettings.Values[UseRoamingKey] = value;
+            }
+        }
+
+        public bool RememberCategory
+        {
+            get
+            {
+                return GetValue<bool>(RememberCategoryKey);
+            }
+            set
+            {
+                _localSettings.Values[RememberCategoryKey] = value;
+            }
         }
 
         private LocalAppSettings()

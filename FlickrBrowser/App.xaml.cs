@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using FlickrBrowser.Common;
-
+﻿using FlickrBrowser.Common;
 using System;
 using FlickrBrowser.DataModel;
 using FlickrBrowser.Infrastructure;
@@ -8,8 +6,6 @@ using FlickrBrowser.Pages;
 using FlickrBrowser.UserControls;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -75,14 +71,40 @@ namespace FlickrBrowser
             }
             if (rootFrame.Content == null)
             {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
                 if (!rootFrame.Navigate(typeof(HomePage), "AllGroups"))
                 {
                     throw new Exception("Failed to create initial page");
                 }
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                if (!string.IsNullOrEmpty(RoamingAppSettings.Instance.HighPriority))
+                {
+                    if (RoamingAppSettings.Instance.HighPriority.Equals(TargetPage.Home.ToString()))
+                    {
+                        if (!rootFrame.Navigate(typeof(HomePage), "AllGroups"))
+                        {
+                            throw new Exception("Failed to create initial page");
+                        }
+                    }
+                    else if (RoamingAppSettings.Instance.HighPriority.Equals(TargetPage.RecentlyAdded.ToString()))
+                    {
+                        if (!rootFrame.Navigate(typeof(RecentlyAddedPage), "AllGroups"))
+                        {
+                            throw new Exception("Failed to create initial page");
+                        }
+                    }
+                    else if (RoamingAppSettings.Instance.HighPriority.Equals(TargetPage.MyPhotos.ToString()))
+                    {
+                        if (!rootFrame.Navigate(typeof(MyPhotosPage), "AllGroups"))
+                        {
+                            throw new Exception("Failed to create initial page");
+                        }
+                    }
+                    
+                }
             }
+            
             // Ensure the current window is active
             Window.Current.Activate();
         }

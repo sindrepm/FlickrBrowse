@@ -1,7 +1,7 @@
 ﻿<UserControl
-    x:Class="FlickrBrowser.UserControls.SettingsUserControl"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="FlickrBrowser.UserControls.SettingsUserControl" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:local="using:FlickrBrowser.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -21,8 +21,8 @@
             <TextBlock Text="FlickrBrowse Settings" FontSize="26" FontFamily="Segoe UI" Margin="0 24 0 0" FontWeight="Light" />
         </StackPanel>
 
-            <StackPanel Grid.Row="1" Background="White">
-                <Grid Margin="25">
+            <StackPanel Grid.Row="1" Background="White" Margin="0,5,0,-5" RenderTransformOrigin="0.5,0.5">
+                <Grid Margin="25" RenderTransformOrigin="0.525,1.824">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="*" />
@@ -38,6 +38,28 @@
                     <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="Flickr API URL:" FontSize="14" FontFamily="Segoe UI" Foreground="#FF292929" />
                     <TextBox Grid.Row="2" x:Name="txtApiUrl" VerticalAlignment="Center" Grid.Column="1" BorderBrush="#FF858585" />
                 </Grid>
+                
+                <Grid Margin="25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="161"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                       <RowDefinition Height="50" />
+                       <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Use Roaming Settings:" 
+                               FontSize="14" FontFamily="Segoe UI" Foreground="#FF292929" 
+                               Margin="0,21,0,10" HorizontalAlignment="Left" Width="161" Height="19" />
+                    <CheckBox x:Name="btnRoamingSettings" Grid.Row="0" Content="CheckBox" HorizontalAlignment="Left" 
+                              VerticalAlignment="Bottom" Margin="40,0,0,10" Grid.Column="1" IsChecked="False" 
+                              Checked="btnRoamingSettings_Checked" Width="46" Unchecked="btnRoamingSettings_UnChecked" Height="27" BorderThickness="5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Remember Menuchoice:" FontSize="14" FontFamily="Segoe UI" Foreground="#FF292929" Margin="0,21,0,10" Height="19" />
+                    <CheckBox x:Name="btnCategorySettings" Grid.Row="1" Content="CheckBox" HorizontalAlignment="Left" 
+                              VerticalAlignment="Bottom" Margin="40,0,0,10" Grid.Column="1" IsChecked="False" 
+                              Checked="btnCategorySettings_Checked" Width="46" Unchecked="btnCategorySettings_UnChecked" Height="27" BorderThickness="5"/>
+                </Grid>
+                
             </StackPanel>
         </Grid>
     </Border>

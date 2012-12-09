@@ -86,16 +86,22 @@ namespace FlickrBrowser.UserControls
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             OnMenuItemClicked(new MenuItemClickedEventArgs(TargetPage.Home));
+            if(LocalAppSettings.Instance.UseRoaming && LocalAppSettings.Instance.RememberCategory)
+                RoamingAppSettings.Instance.HighPriority = TargetPage.Home.ToString();
         }
 
         private void btnRecentlyAdded_Click(object sender, RoutedEventArgs e)
         {
             OnMenuItemClicked(new MenuItemClickedEventArgs(TargetPage.RecentlyAdded));
+            if (LocalAppSettings.Instance.UseRoaming && LocalAppSettings.Instance.RememberCategory)
+                RoamingAppSettings.Instance.HighPriority = TargetPage.RecentlyAdded.ToString();
         }
 
         private void btnMyPhotos_Click(object sender, RoutedEventArgs e)
         {
             OnMenuItemClicked(new MenuItemClickedEventArgs(TargetPage.MyPhotos));
+            if (LocalAppSettings.Instance.UseRoaming && LocalAppSettings.Instance.RememberCategory)
+                RoamingAppSettings.Instance.HighPriority = TargetPage.MyPhotos.ToString();
         }
 
         private void OnMenuItemClicked(MenuItemClickedEventArgs e)
