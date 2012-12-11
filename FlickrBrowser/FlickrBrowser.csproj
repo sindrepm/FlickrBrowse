@@ -221,12 +221,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\..\MesanApplicationFramework-MS\MesanApplicationFramework.Common\MesanApplicationFramework.Common.csproj">
       <Project>{c52b3015-0b85-4ef9-b62b-3f73b0f2b525}</Project>
       <Name>MesanApplicationFramework.Common</Name>
     </ProjectReference>
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
     <Reference Include="MesanApplicationFramework.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
