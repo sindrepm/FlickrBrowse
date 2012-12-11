@@ -6,6 +6,7 @@ using FlickrBrowser.Infrastructure;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Foundation;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
@@ -33,25 +34,33 @@ namespace FlickrBrowser.Pages
             {
                 if (share.Data.Contains(StandardDataFormats.StorageItems))
                 {
-                    IReadOnlyList<IStorageItem> storageItems = await share.Data.GetStorageItemsAsync();
-                    var fileName = storageItems[0].Name;
+                    var storageItems = await share.Data.GetStorageItemsAsync();
 
-                    StorageFolder storageFolder = KnownFolders.PicturesLibrary;
-                    StorageFile sampleFile = await storageFolder.GetFileAsync(fileName);
+                    if (storageItems.Count > 0 && storageItems[0] is StorageFile)
+                    {
+                        var item = (storageItems[0] as StorageFile);
 
-                    //lblImagePath.Text = sampleFile.Path;
+                        photoRecievedContainer.ImageFailed += 
+                            (sender, args) =>
+                        {
+                            lblImagePath.Text = args.ErrorMessage;
+                        };
 
-                    photoRecievedContainer.ImageFailed += (sender, args) =>
-                                                              {
-                                                                  var error = args.ErrorMessage;
-                                                                  lblImagePath.Text = error;
-                                                              };
+                        photoRecievedContainer.ImageOpened += 
+                            (sender, args) =>
+                        {
+                            lblImagePath.Text = item.DisplayName;
+                        };
 
-                    photoRecievedContainer.Source = await GetBitmapImageAsync(sampleFile);
+                        photoRecievedContainer.Source = await GetBitmapImageAsync(item);
+                    }
                 }
             }
         }
 
+        /// <summary>
+        /// Metode for å gjøre om fil til bilde.
+        /// </summary>
         private async Task<BitmapImage> GetBitmapImageAsync(StorageFile storageFile)
         {
             var bitmapImage = new BitmapImage();
