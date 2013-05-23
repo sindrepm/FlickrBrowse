@@ -21,9 +21,14 @@ namespace FlickrBrowser.Pages
 {
     public sealed partial class PhotoRecievedPage
     {
+        private readonly PicturesLibraryManager _picturesLibraryManager;
+        private StorageFile _receivedImage;
+
         public PhotoRecievedPage()
         {
             InitializeComponent();
+
+            _picturesLibraryManager = new PicturesLibraryManager();
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -52,6 +57,7 @@ namespace FlickrBrowser.Pages
                             lblImagePath.Text = item.DisplayName;
                         };
 
+                        _receivedImage = item;
                         photoRecievedContainer.Source = await GetBitmapImageAsync(item);
                     }
                 }
@@ -68,6 +74,14 @@ namespace FlickrBrowser.Pages
             IRandomAccessStream stream = await operation;
             bitmapImage.SetSource(stream);
             return bitmapImage;
+        }
+
+        private async void SaveImageToMyPhotos(object sender, RoutedEventArgs e)
+        {
+            if (_receivedImage != null)
+                await _picturesLibraryManager.SaveBitmapToPictureLibrary(_receivedImage);
+
+            await new MessageDialog("The image was saved to my photos!").ShowAsync();
         }
     }
 }

@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Search;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace FlickrBrowser.DataModel
 {
@@ -61,6 +62,11 @@ namespace FlickrBrowser.DataModel
                     }
                 }
             }
+        }
+
+        public async Task SaveBitmapToPictureLibrary(StorageFile image)
+        {
+            await image.CopyAsync(KnownFolders.PicturesLibrary);
         }
 
         private string GetFilenameFromUrl(string url)
