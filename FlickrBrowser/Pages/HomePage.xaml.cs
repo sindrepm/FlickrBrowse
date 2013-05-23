@@ -21,7 +21,7 @@ namespace FlickrBrowser.Pages
     {
         private static IEnumerable<FlickrPhoto> _photos;
         private readonly PicturesLibraryManager _picturesLibraryManager;
-        private DataTransferManager dataTransferManager;
+        private DataTransferManager _dataTransferManager;
 
         public HomePage()
         {
@@ -33,6 +33,7 @@ namespace FlickrBrowser.Pages
 
             // Would use IOC in a real-world app
             _picturesLibraryManager = new PicturesLibraryManager();
+            _dataTransferManager = DataTransferManager.GetForCurrentView();
         }
 
         private void BindEventHandlers()
@@ -96,30 +97,35 @@ namespace FlickrBrowser.Pages
                 ShowApiKeyWarning();
 
             GetPhotosAsync();
-
+           
             // Del bilder etc med omverdenen...
-            dataTransferManager = DataTransferManager.GetForCurrentView();
-            dataTransferManager.DataRequested += 
-                async (sender, args) =>
+            _dataTransferManager.DataRequested += DataTransferManagerOnDataRequested;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            _dataTransferManager.DataRequested -= DataTransferManagerOnDataRequested;
+        }
+
+        private async void DataTransferManagerOnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            DataPackage requestData = args.Request.Data;
+            requestData.Properties.Title = "FlickrShare";
+            requestData.SetText("FlickShare shares its sharings");
+
+            if (_photos != null)
             {
-                DataPackage requestData = args.Request.Data;
-                requestData.Properties.Title = "FlickrShare";
-                requestData.SetText("FlickShare shares its sharings");
+                var photoToShare = _photos.First();
 
-                if(_photos != null)
-                {
-                    var photoToShare = _photos.First();
-
-                    requestData.Properties.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(photoToShare.ThumbnailUrl));
-                    requestData.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri(photoToShare.LargeImageUrl)));
-                }
-                else
-                {
-                    requestData.Properties.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri("http://ap.mnocdn.no/incoming/article7065505.ece/ALTERNATES/w680cFree/afp000443990.jpg?updated=111220120643"));
-                    requestData.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("http://ap.mnocdn.no/incoming/article7065505.ece/ALTERNATES/w680cFree/afp000443990.jpg?updated=111220120643")));
-                    requestData.SetUri(new Uri("http://ap.mnocdn.no/incoming/article7066904.ece/ALTERNATES/w780c169/sxb5de30.jpg?updated=111220120638"));
-                }
-            };
+                requestData.Properties.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(photoToShare.ThumbnailUrl));
+                requestData.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri(photoToShare.LargeImageUrl)));
+            }
+            else
+            {
+                requestData.Properties.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri("http://ap.mnocdn.no/incoming/article7065505.ece/ALTERNATES/w680cFree/afp000443990.jpg?updated=111220120643"));
+                requestData.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri("http://ap.mnocdn.no/incoming/article7065505.ece/ALTERNATES/w680cFree/afp000443990.jpg?updated=111220120643")));
+                requestData.SetUri(new Uri("http://ap.mnocdn.no/incoming/article7066904.ece/ALTERNATES/w780c169/sxb5de30.jpg?updated=111220120638"));
+            }
         }
 
         private async void ShowApiKeyWarning()
